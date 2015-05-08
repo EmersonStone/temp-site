@@ -4,8 +4,8 @@
   float: left;
 }
 
-@for #{i} in $grid__columns {
-  .col-#{i} {
-    width: (#{1} / 12 * 100%);
+@for $i from 1 through $grid__columns {
+  .col-#{$i} {
+    width: ($i / $grid__columns * 100%);
   }
 }

@@ -51,7 +51,7 @@ $button-padding-x: 1rem !default;
 // Borders
 $border-width: 1px !default;
 $border-radius: 3px !default;
-$border-color: $darken-2 !default;
+$border-color: $blue !default;
 
 // Layout
 $container-width: 64em !default;
@@ -73,8 +73,8 @@ $z-10:                              1000;
 
 // Grid
 $content-width: pxem(1200);
-$grid__columns: 6 !default; col 160
-$gutter-width: 1.875rem; 40
+$grid__columns: 6 !default;
+$gutter-width: 2.5rem;
 
 // Media Query Variables
 $breakpoint-sm: '(min-width: 40em)' !default;
