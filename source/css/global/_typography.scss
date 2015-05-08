@@ -1,0 +1,41 @@
+/* Typography */
+
+.text {
+  
+  &__bold    {
+    font-weight: $bold-font-weight /* Fallback value:  bold */
+  }
+
+  &__regular {
+    font-weight: normal
+  }
+
+  &__italic  {
+    font-style: italic
+  }
+
+  &__caps    {
+    text-transform: uppercase; letter-spacing: .2em;
+  }
+
+  &__left-align   {
+    text-align: left
+  }
+
+  &__center       {
+    text-align: center
+  }
+
+  &__right-align  {
+    text-align: right
+  }
+
+  &__justify      {
+    text-align: justify
+  }
+
+  &__nowrap {
+    white-space: nowrap
+  }
+
+}

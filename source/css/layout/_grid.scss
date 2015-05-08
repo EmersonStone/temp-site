@@ -1,0 +1,11 @@
+/* Grid */
+
+.col {
+  float: left;
+}
+
+@for #{i} in $grid__columns {
+  .col-#{i} {
+    width: (#{1} / 12 * 100%);
+  }
+}
