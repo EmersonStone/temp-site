@@ -9,21 +9,14 @@ var autoprefixer = require('autoprefixer-core');
 var mqpacker     = require('css-mqpacker');
 
 var paths = {
-  scss: [
-    './source/css/**/*.scss'
-  ],
-  css: [
-    './build/css/style.css'
-  ],
-  build: [
-    './build'
-  ]
+  "scss": ['./source/css/**/*.scss'],
+  "css": ['./build/css/**/*.css'],
+  "build": './build',
+  "buildCSS": './build/css'
 }
 
 // Scan your HTML for assets & optimize them
 gulp.task('html', function () {
-  var assets = $.useref.assets({searchPath: '{.tmp,app}'});
-
   return gulp.src('./source/**/*.html')
     .pipe(gulp.dest(paths.build))
     .pipe($.size({title: 'html'}));
@@ -33,7 +26,8 @@ gulp.task('html', function () {
 gulp.task('sass', function () {
   gulp.src(paths.scss)
     .pipe(sass())
-    .pipe(gulp.dest(paths.css));
+    .pipe(sass({errLogToConsole: true}))
+    .pipe(gulp.dest(paths.buildCSS));
 });
 
 // Run PostCSS
@@ -45,7 +39,10 @@ gulp.task('postcss', function () {
 
   return gulp.src(paths.css)
     .pipe(postcss(processors))
-    .pipe(gulp.dest(paths.css));
+    .on('error', function (error) {
+      console.log(error)
+    })
+    .pipe(gulp.dest(paths.buildCSS));
 });
 
 // Optimize images
@@ -67,9 +64,9 @@ gulp.task('watchStyles', function () {
 
 // Defaut
 gulp.task('default', [
+  'html',
   'sass',
-  'postcss',
-  'html'
+  'postcss'
 ]);
 
 // Watch
