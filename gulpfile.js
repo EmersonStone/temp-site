@@ -14,8 +14,20 @@ var paths = {
   ],
   css: [
     './build/css/style.css'
+  ],
+  build: [
+    './build'
   ]
 }
+
+// Scan your HTML for assets & optimize them
+gulp.task('html', function () {
+  var assets = $.useref.assets({searchPath: '{.tmp,app}'});
+
+  return gulp.src('./source/**/*.html')
+    .pipe(gulp.dest(paths.build))
+    .pipe($.size({title: 'html'}));
+});
 
 // Complile sass
 gulp.task('sass', function () {
@@ -56,7 +68,8 @@ gulp.task('watchStyles', function () {
 // Defaut
 gulp.task('default', [
   'sass',
-  'postcss'
+  'postcss',
+  'html'
 ]);
 
 // Watch
