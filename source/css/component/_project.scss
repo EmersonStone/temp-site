@@ -1,0 +1,23 @@
+.project {
+  margin-bottom: pxem(120);
+
+  &__list {
+
+    &-header {
+      margin-bottom: pxem(80);
+    }
+  }
+
+  &__date {
+    color: $darkGrey;
+    margin-bottom: pxem(22);
+  }
+
+  &__image {
+    margin-bottom: pxem(22);
+  }
+
+  &__info {
+    margin-bottom: 0;
+  }
+}

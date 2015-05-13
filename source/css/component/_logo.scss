@@ -1,0 +1,13 @@
+aside.logo {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  padding: 2vh 2vh 2vh 0;
+
+  border-right: pxem(15) solid $blue;
+
+  svg {
+    height: 100%;
+  }
+}

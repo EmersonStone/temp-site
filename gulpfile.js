@@ -12,14 +12,25 @@ var paths = {
   "scss": ['./source/css/**/*.scss'],
   "css": ['./build/css/**/*.css'],
   "build": './build',
-  "buildCSS": './build/css'
+  "buildCSS": './build/css',
+  "source": "./source/**/*.html",
+  "img": ['./source/img/**/*'],
+  "imageDest": './build/img',
+  "fonts": ['./source/fonts/**']
 }
 
 // Scan your HTML for assets & optimize them
 gulp.task('html', function () {
-  return gulp.src('./source/**/*.html')
+  return gulp.src(paths.source)
     .pipe(gulp.dest(paths.build))
     .pipe($.size({title: 'html'}));
+});
+
+// Copy web fonts to dist
+gulp.task('fonts', function () {
+  return gulp.src(paths.fonts)
+    .pipe(gulp.dest('./build/fonts'))
+    .pipe($.size({title: 'fonts'}));
 });
 
 // Complile sass
@@ -47,12 +58,12 @@ gulp.task('postcss', function () {
 
 // Optimize images
 gulp.task('images', function () {
-  return gulp.src('app/images/**/*')
-    .pipe($.cache($.imagemin({
+  return gulp.src(paths.img)
+    .pipe($.imagemin({
       progressive: true,
       interlaced: true
-    })))
-    .pipe(gulp.dest('dist/images'))
+    }))
+    .pipe(gulp.dest(paths.imageDest))
     .pipe($.size({title: 'images'}));
 });
 
@@ -62,22 +73,36 @@ gulp.task('watchStyles', function () {
   gulp.watch(paths.css, ['postcss']);
 });
 
+// Watch HTML
+gulp.task('watchHTML', function () {
+  gulp.watch(paths.source, ['html']);
+});
+
+// Watch Images
+gulp.task('watchImages', function () {
+  gulp.watch(paths.img, ['images']);
+});
+
 // Defaut
 gulp.task('default', [
   'html',
   'sass',
-  'postcss'
+  'postcss',
+  'images',
+  'fonts'
 ]);
 
 // Watch
 gulp.task('watch', [
-  'watchStyles'
+  'watchStyles',
+  'watchHTML',
+  'watchImages'
 ]);
 
 // Run PageSpeed Insights
 gulp.task('pagespeed', function (cb) {
   // Update the below URL to the public URL of your site
-  pagespeed.output('example.com', {
+  pagespeed.output('emersonstone.dev', {
     strategy: 'mobile',
     // By default we use the PageSpeed Insights free (no API key) tier.
     // Use a Google Developer API key if you have one: http://goo.gl/RkN0vE

@@ -1,7 +1,47 @@
 /* Typography */
 
+body {
+  font-size: pxem(26);
+  line-height: pxem(45);
+
+  @include national;
+}
+
+p {
+  margin-bottom: pxem(70);
+}
+
+hr {
+  height: pxem(15);
+  background-color: $grey;
+  margin: pxem(105) 0;
+}
+
+a {
+  color: $blue;
+  outline: none;
+  text-decoration: underline;
+  transition: margin-left 240ms $t-1;
+
+  &:visited,
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+    color: $blue;
+    outline: none;
+  }
+
+  &:hover {
+    margin-left: pxem(20);
+  }
+}
+
 .text {
-  
+
+  &__white {
+    color: $white;
+  }
+
   &__bold    {
     font-weight: $bold-font-weight /* Fallback value:  bold */
   }
@@ -37,5 +77,8 @@
   &__nowrap {
     white-space: nowrap
   }
+}
+
+.link {
 
 }

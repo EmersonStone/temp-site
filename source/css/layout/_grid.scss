@@ -5,7 +5,19 @@
 }
 
 @for $i from 1 through $grid__columns {
-  .col-#{$i} {
+  .col__#{$i} {
     width: ($i / $grid__columns * 100%);
+  }
+}
+
+@for $i from 1 through $grid__columns {
+  .col__space-#{$i} {
+    margin-right: ($i / $grid__columns * 100%);
+  }
+}
+
+@for $i from 1 through $grid__columns {
+  .col__offset-#{$i} {
+    margin-left: ($i / $grid__columns * 100%);
   }
 }

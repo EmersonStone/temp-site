@@ -8,3 +8,14 @@
     clear: both;
   }
 }
+
+// Fonts
+@mixin national {
+  font-family: 'National';
+  font-style: normal;
+}
+
+@mixin national-italic {
+  font-family: 'National Italic';
+  font-style: italic;
+}

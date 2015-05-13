@@ -4,4 +4,19 @@
   max-width: $container-width;
   margin-left: auto;
   margin-right: auto;
+
+  @include clearfix;
+}
+
+section {
+  @include clearfix;
+}
+
+.row {
+  width: 100%;
+  position: relative;
+}
+
+main {
+  margin-top: pxem(140);
 }
