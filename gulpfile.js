@@ -5,8 +5,10 @@ var $            = require('gulp-load-plugins')();
 var sass         = require('gulp-sass');
 var pagespeed    = require('psi');
 var postcss      = require('gulp-postcss');
+var plumber      = require('gulp-plumber');
 var autoprefixer = require('autoprefixer-core');
 var mqpacker     = require('css-mqpacker');
+var webserver    = require('gulp-webserver');
 
 var paths = {
   "scss": ['./source/css/**/*.scss'],
@@ -22,6 +24,7 @@ var paths = {
 // Scan your HTML for assets & optimize them
 gulp.task('html', function () {
   return gulp.src(paths.source)
+    .pipe(plumber())
     .pipe(gulp.dest(paths.build))
     .pipe($.size({title: 'html'}));
 });
@@ -36,6 +39,7 @@ gulp.task('fonts', function () {
 // Complile sass
 gulp.task('sass', function () {
   gulp.src(paths.scss)
+    .pipe(plumber())
     .pipe(sass())
     .pipe(sass({errLogToConsole: true}))
     .pipe(gulp.dest(paths.buildCSS));
@@ -49,6 +53,7 @@ gulp.task('postcss', function () {
   ];
 
   return gulp.src(paths.css)
+    .pipe(plumber())
     .pipe(postcss(processors))
     .on('error', function (error) {
       console.log(error)
@@ -83,6 +88,16 @@ gulp.task('watchImages', function () {
   gulp.watch(paths.img, ['images']);
 });
 
+// Serve Website
+gulp.task('serve', function() {
+  gulp.src(paths.build)
+  .pipe(webserver({
+    livereload: true,
+    directoryListing: false,
+    open: true
+  }))
+});
+
 // Defaut
 gulp.task('default', [
   'html',
@@ -94,9 +109,11 @@ gulp.task('default', [
 
 // Watch
 gulp.task('watch', [
+  'default',
   'watchStyles',
   'watchHTML',
-  'watchImages'
+  'watchImages',
+  'serve'
 ]);
 
 // Run PageSpeed Insights
