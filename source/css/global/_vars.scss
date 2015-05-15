@@ -79,6 +79,5 @@ $grid__columns: 6 !default;
 $gutter-width: 2.5rem;
 
 // Media Query Variables
-$breakpoint-sm: '(min-width: 40em)' !default;
-$breakpoint-md: '(min-width: 52em)' !default;
-$breakpoint-lg: '(min-width: 64em)' !default;
+$bp: '(min-width: 768px)' !default;
+$bp-max: '(max-width: 767px)' !default;

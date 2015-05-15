@@ -2,22 +2,36 @@
 
 .col {
   float: left;
+
+  @media #{$bp-max} {
+    padding: 0 pxem(20);
+  }
 }
 
 @for $i from 1 through $grid__columns {
   .col__#{$i} {
-    width: ($i / $grid__columns * 100%);
+    width: 100%;
+
+    @media #{$bp} {
+      width: ($i / $grid__columns * 100%);
+    }
   }
 }
 
 @for $i from 1 through $grid__columns {
   .col__space-#{$i} {
-    margin-right: ($i / $grid__columns * 100%);
+
+    @media #{$bp} {
+      margin-right: ($i / $grid__columns * 100%);
+    }
   }
 }
 
 @for $i from 1 through $grid__columns {
   .col__offset-#{$i} {
-    margin-left: ($i / $grid__columns * 100%);
+
+    @media #{$bp} {
+      margin-left: ($i / $grid__columns * 100%);
+    }
   }
 }

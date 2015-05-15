@@ -1,6 +1,12 @@
 .project {
   margin-bottom: pxem(120);
 
+  @include clearfix;
+
+  &:last-of-type {
+    margin-bottom: pxem(140);
+  }
+
   &__list {
 
     &-header {

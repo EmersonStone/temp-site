@@ -1,8 +1,13 @@
 /* Typography */
 
 body {
-  font-size: pxem(26);
-  line-height: pxem(45);
+  font-size: pxem(18);
+  line-height: pxem(28);
+
+  @media #{$bp} {
+    font-size: pxem(26);
+    line-height: pxem(45);
+  }
 
   @include national;
 }

@@ -1,13 +1,38 @@
 aside.logo {
-  position: fixed;
-  right: 0;
   top: 0;
-  height: 100vh;
-  padding: 2vh 2vh 2vh 0;
 
-  border-right: pxem(15) solid $blue;
+  @media #{$bp-max} {
+    position: relative;
+    left: 0;
+    width: 100%;
+    padding: 2vw 2vw 2vw 0;
+    border-top: pxem(5) solid $blue;
+  }
 
-  svg {
+  @media #{$bp} {
+    position: fixed;
+    right: 0;
+    height: 100vh;
+    padding: 2vh 2vh 2vh 0;
+
+    border-right: pxem(15) solid $blue;
+  }
+
+  .svg__logo-vertical {
+    display: none;
     height: 100%;
+
+    @media #{$bp} {
+      display: block
+    }
+  }
+
+  .svg__logo-horizontal {
+    display: block;
+    width: 100%;
+
+    @media #{$bp} {
+      display: none;
+    }
   }
 }
