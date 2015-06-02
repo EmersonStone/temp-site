@@ -46,22 +46,15 @@ gulp.task('fonts', function () {
 
 // Complile sass
 gulp.task('sass', function () {
-  gulp.src(paths.scss)
-    .pipe(plumber())
-    .pipe(sass())
-    .pipe(sass({errLogToConsole: true}))
-    .pipe(gulp.dest(paths.buildCSS));
-});
-
-// Run PostCSS
-gulp.task('postcss', function () {
   var processors = [
       autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']}),
       mqpacker
   ];
 
-  return gulp.src(paths.css)
+  gulp.src(paths.scss)
     .pipe(plumber())
+    .pipe(sass())
+    .pipe(sass({errLogToConsole: true}))
     .pipe(postcss(processors))
     .on('error', function (error) {
       console.log(error)
@@ -83,7 +76,6 @@ gulp.task('images', function () {
 // Watch Styles
 gulp.task('watchStyles', function () {
   gulp.watch(paths.scss, ['sass']);
-  gulp.watch(paths.css, ['postcss']);
 });
 
 // Watch HTML
@@ -111,7 +103,6 @@ gulp.task('default', [
   'clean',
   'html',
   'sass',
-  'postcss',
   'images',
   'fonts'
 ]);
