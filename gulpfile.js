@@ -6,6 +6,7 @@ var sass         = require('gulp-sass');
 var pagespeed    = require('psi');
 var postcss      = require('gulp-postcss');
 var plumber      = require('gulp-plumber');
+var rimraf       = require('gulprimraf');
 var autoprefixer = require('autoprefixer-core');
 var mqpacker     = require('css-mqpacker');
 var webserver    = require('gulp-webserver');
@@ -20,6 +21,11 @@ var paths = {
   "imageDest": './build/img',
   "fonts": ['./source/fonts/**']
 }
+
+// Clean the build directory
+gulp.task('clean', function (cb) {
+  rimraf(paths.build, cb)
+});
 
 // Scan your HTML for assets & optimize them
 gulp.task('html', function () {
@@ -100,6 +106,7 @@ gulp.task('serve', function() {
 
 // Defaut
 gulp.task('default', [
+  'clean',
   'html',
   'sass',
   'postcss',
