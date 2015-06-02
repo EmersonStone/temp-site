@@ -2,12 +2,11 @@
 
 var gulp         = require('gulp');
 var $            = require('gulp-load-plugins')();
-var ignore       = require('gulp-ignore');
 var sass         = require('gulp-sass');
 var pagespeed    = require('psi');
 var postcss      = require('gulp-postcss');
 var plumber      = require('gulp-plumber');
-var rimraf       = require('gulp-rimraf');
+var rimraf       = require ('rimraf');
 var autoprefixer = require('autoprefixer-core');
 var mqpacker     = require('css-mqpacker');
 var webserver    = require('gulp-webserver');
@@ -20,13 +19,12 @@ var paths = {
   "source": "./source/**/*.html",
   "img": ['./source/img/**/*'],
   "imageDest": './build/img',
-  "fonts": ['./source/fonts/**']
+  "fonts": ['./source/fonts/**/*']
 }
 
 // Clean the build directory
 gulp.task('clean', function () {
-  return gulp.src(paths.build, {read: false})
-  .pipe(rimraf());
+  rimraf.sync('./build');
 });
 
 // Scan your HTML for assets & optimize them
