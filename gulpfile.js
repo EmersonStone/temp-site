@@ -2,11 +2,12 @@
 
 var gulp         = require('gulp');
 var $            = require('gulp-load-plugins')();
+var ignore       = require('gulp-ignore');
 var sass         = require('gulp-sass');
 var pagespeed    = require('psi');
 var postcss      = require('gulp-postcss');
 var plumber      = require('gulp-plumber');
-var rimraf       = require('gulprimraf');
+var rimraf       = require('gulp-rimraf');
 var autoprefixer = require('autoprefixer-core');
 var mqpacker     = require('css-mqpacker');
 var webserver    = require('gulp-webserver');
@@ -23,8 +24,9 @@ var paths = {
 }
 
 // Clean the build directory
-gulp.task('clean', function (cb) {
-  rimraf(paths.build, cb)
+gulp.task('clean', function () {
+  return gulp.src(paths.build, {read: false})
+  .pipe(rimraf());
 });
 
 // Scan your HTML for assets & optimize them
